@@ -474,7 +474,7 @@
         </div>
         <div class="cart-content" id="cart-items"></div>
         <div class="cart-footer">
-            <input type="text" class="whatsapp-input" id="whatsapp-num" placeholder="Numéro WhatsApp (ex: +237...)" value="+237">
+            <!-- <input type="text" class="whatsapp-input" id="whatsapp-num" placeholder="Numéro WhatsApp (ex: +237...)" value="+237"> -->
             <button class="btn-whatsapp" onclick="sendToWhatsApp()">COMMANDER SUR WHATSAPP</button>
         </div>
     </div>
@@ -2705,17 +2705,12 @@
         }
 
         // --- WHATSAPP ---
-        function sendToWhatsApp() {
+function sendToWhatsApp() {
 
     if (cart.length === 0) {
         alert("Le panier est vide");
         return;
     }
-
-    const phone = document
-        .getElementById('whatsapp-num')
-        .value
-        .replace(/\s/g, '');
 
     let message = "Bonjour, voici ma commande :\n\n";
 
@@ -2728,13 +2723,12 @@
         message +=
             `${index + 1}. ${item.id}\n` +
             `${imageUrl}\n\n`;
-
     });
 
-    const whatsappUrl =
-        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappUrl, '_blank');
+    window.open(
+        `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`,
+        '_blank'
+    );
 }
     </script>
 </body>
